@@ -9,7 +9,8 @@ public class EloCalculator {
 		D = d;
 	}
 	
-	public static void updateRating(Participant[] participants) {
+	public static void updateRating(RaceResult raceResult) {
+		Participant[] participants = raceResult.participants;
 		double[][] expectedScores = new double[participants.length][participants.length];
 		double[][] actualScores = new double[participants.length][participants.length];
 		for (int i = 0; i < participants.length; i++) {
@@ -23,7 +24,7 @@ public class EloCalculator {
 		// update ratings
 		for (int i = 0; i < participants.length; i++) {
 			Participant participant = participants[i];
-			double currentRating = participant.newRating();
+			double currentRating = participant.getRating();
 			double totalExpectation = 0;
 			double totalActual = 0;
 			for (int j = 0; j < participants.length; j++) {
@@ -38,7 +39,7 @@ public class EloCalculator {
 
 	private static double expectedScore(Participant player, Participant opponent) {
 		double exponential = Math.pow(10,
-				(opponent.newRating() - player.newRating()) / D);
+				(opponent.getRating() - player.getRating()) / D);
 		double denominator = 1 + exponential;
 		return Math.pow(denominator, -1);
 	}

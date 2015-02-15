@@ -1,32 +1,33 @@
 package elo;
+
 public class Participant {
-	private double initialRating;
-	private double newRating;
+	private String id;
+	private double rating;
 	private int score;
 
-	public Participant(double rating, int score) {
-		this.initialRating = rating;
+	public Participant(String id, double rating, int score) {
+		this.id = id;
+		this.rating = rating;
 		this.score = score;
-		setRating(initialRating);
+	}
+	
+	public double getRating() {
+		return rating;
 	}
 
-	public double InitialRating() {
-		return initialRating;
-	}
-	
-	public double newRating() {
-		return newRating;
-	}
-	
 	public void setRating(double rating) {
-		this.newRating = rating;
+		this.rating = rating;
+	}
+
+	public String getId() {
+		return id;
 	}
 
 	public int getScore() {
 		return score;
 	}
-	
-	public void setScore(int score){
+
+	public void setScore(int score) {
 		this.score = score;
 	}
 
